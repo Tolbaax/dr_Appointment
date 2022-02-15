@@ -94,7 +94,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   Text('Category',style: TextStyle(fontSize: 23,fontWeight: FontWeight.w700),),
                   Spacer(),
                   Text('See all',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Colors.grey),),
-                  //---
                 ],
               ),
             )
