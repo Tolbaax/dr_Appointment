@@ -1,13 +1,19 @@
 
+import 'package:de_appointment/Model/CategoryModel.dart';
+import 'package:de_appointment/Widgets/CategoryWidget.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
-
+List<CategoryModel>category=[
+  CategoryModel(categoryImageUrl: 'images/tooth.png',categoryNames: 'Dental',drNumber: '20 Doctors'),
+  CategoryModel(categoryImageUrl: 'images/heart.png',categoryNames: 'Heart',drNumber: '18 Doctors'),
+  CategoryModel(categoryImageUrl: 'images/Brain1.png',categoryNames: 'Brain',drNumber: '23 Doctors'),
+  CategoryModel(categoryImageUrl: 'images/bone.png',categoryNames: 'Bone',drNumber: '10 Doctors'),
+];
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
@@ -42,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin:const EdgeInsets.only(left:22,top: 25),
+              margin:const EdgeInsets.only(left:22,top: 20),
               child:const Text('Hi, Tolba',style: TextStyle(fontSize: 27),),
             ),
             Container(
@@ -51,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Container(
               height: 50,width: MediaQuery.of(context).size.width,
-              margin:const EdgeInsets.only(left: 25,right: 25,top: 35),
+              margin:const EdgeInsets.only(left: 25,right: 25,top: 25),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(7)
@@ -91,12 +97,23 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.only(left: 25,right: 25,top: 30),
               child: Row(
                 children:const [
-                  Text('Category',style: TextStyle(fontSize: 23,fontWeight: FontWeight.w700),),
+                  Text('Category',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w700),),
                   Spacer(),
                   Text('See all',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Colors.grey),),
                 ],
               ),
-            )
+            ),
+            SizedBox(
+              height: 135,
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: category.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context,index)
+                  {
+                    return CategoryWidget(category: category[index],);
+                  }),
+            ),
           ],
         ),
       ),
