@@ -17,7 +17,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
       height: 120,width: 90,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.teal,
+        color: Colors.teal.shade600,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
