@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class AppScreen extends StatefulWidget {
   const AppScreen({Key? key}) : super(key: key);
-
+  static String id = 'AppScreen';
   @override
   _AppScreenState createState() => _AppScreenState();
 }
@@ -11,6 +11,8 @@ class AppScreen extends StatefulWidget {
 class _AppScreenState extends State<AppScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold(
+      backgroundColor: Colors.yellow,
+    );
   }
 }
