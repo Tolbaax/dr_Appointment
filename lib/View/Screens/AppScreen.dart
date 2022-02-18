@@ -1,20 +1,54 @@
 
+import 'package:de_appointment/Model/DrTimeModel.dart';
+import 'package:de_appointment/View/Widgets/DataTimeWidget.dart';
+import 'package:de_appointment/View/Widgets/DrTimeWidget.dart';
 import 'package:flutter/material.dart';
 
+import '../../Model/DataTimeModel.dart';
+
 class AppScreen extends StatefulWidget {
-  const AppScreen({Key? key}) : super(key: key);
+  const AppScreen({Key? key,}) : super(key: key);
   static String id = 'AppScreen';
   @override
   _AppScreenState createState() => _AppScreenState();
 }
 
 class _AppScreenState extends State<AppScreen> {
+  List<DataTimeModel> dataTime = [
+    DataTimeModel(day: 'Tue', month: 13, color: Colors.teal.shade600, textColor: Colors.white),
+    DataTimeModel(day: 'Wed', month: 14, color: Colors.white),
+    DataTimeModel(day: 'Thu', month: 15, color: Colors.white),
+    DataTimeModel(day: 'Fri', month: 16, color: Colors.white),
+    DataTimeModel(day: 'Sat', month: 17, color: Colors.white),
+    DataTimeModel(day: 'Sun', month: 18, color: Colors.white),
+    DataTimeModel(day: 'Mon', month: 19, color: Colors.white),
+  ];
+
+  List<DrTimeModel> morningTime = [
+    DrTimeModel(time: '08:30 Am',color: Colors.white),
+    DrTimeModel(time: '08:30 Am',color: Colors.teal.shade600,textColor: Colors.white,iconColor: Colors.white),
+    DrTimeModel(time: '08:30 Am',color: Colors.white),
+    DrTimeModel(time: '08:30 Am',color: Colors.white),
+    DrTimeModel(time: '08:30 Am',color: Colors.white),
+    DrTimeModel(time: '08:30 Am',color: Colors.white),
+
+  ];
+
+  List<DrTimeModel> eveningTime = [
+    DrTimeModel(time: '08:30 Am',color: Colors.white),
+    DrTimeModel(time: '08:30 Am',color: Colors.teal.shade600,textColor: Colors.white,iconColor: Colors.white),
+    DrTimeModel(time: '08:30 Am',color: Colors.white),
+    DrTimeModel(time: '08:30 Am',color: Colors.white),
+    DrTimeModel(time: '08:30 Am',color: Colors.white),
+    DrTimeModel(time: '08:30 Am',color: Colors.white),
+
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
-        backgroundColor: Colors.blue.shade800,
+        backgroundColor: Colors.blueGrey.shade700,
         elevation: 0.0,
         actions: [
           Container(
@@ -26,9 +60,9 @@ class _AppScreenState extends State<AppScreen> {
       body: Column(
         children: [
           Container(
-            height: 190,
+            height: 200,
             decoration: BoxDecoration(
-              color: Colors.blue.shade800,
+              color: Colors.blueGrey.shade700,
               borderRadius: const BorderRadius.only(
                 bottomRight: Radius.circular(35),
                 bottomLeft: Radius.circular(35),
@@ -53,21 +87,27 @@ class _AppScreenState extends State<AppScreen> {
                       padding: EdgeInsets.only(left: 20, bottom: 15),
                       child: Text(
                         'Dr. Mazen',
-                        style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.w700),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w700),
                       ),
                     ),
                     const Padding(
                       padding: EdgeInsets.only(left: 20),
                       child: Text(
-                        'Heart surgeon',
+                        'Eye specialist',
                         style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w400,fontSize: 16),
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16),
                       ),
                     ),
                     Container(
                       height: 30,
                       width: 120,
-                      margin: const EdgeInsets.only(top: 15, left: 20,bottom: 10),
+                      margin:
+                          const EdgeInsets.only(top: 15, left: 20, bottom: 10),
                       child: ListView.builder(
                           itemCount: 5,
                           scrollDirection: Axis.horizontal,
@@ -87,41 +127,77 @@ class _AppScreenState extends State<AppScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                  margin:const EdgeInsets.only(left: 20,top: 25),
-                  child:const Text('February 2022',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w700),)),
+                  margin: const EdgeInsets.only(left: 20, top: 20),
+                  child: const Text(
+                    'February 2022',
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+                  )),
             ],
           ),
           SizedBox(
-            height: 120,
+            height: 105,
             child: ListView.builder(
-                itemCount: 7,
+                itemCount: dataTime.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-              return Container(
-                height: 110,width: 65,
-                margin:const EdgeInsets.only(left: 20,top: 20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children:const[
-                    Text('Tue',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700),),
-                    SizedBox(height: 15,),
-                    Text('21',style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700))
-                  ],
-                ),
-              );
-            }),
+                  return DataTimeWidget(
+                    dataTime: dataTime[index],
+                  );
+                }),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                  margin:const EdgeInsets.only(left: 20,top: 25),
-                  child:const Text('Morning',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w700),)),
+                  margin: const EdgeInsets.only(left: 20, top: 15),
+                  child: const Text(
+                    'Morning',
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+                  )),
             ],
+          ),
+          Container(
+            height: 110,
+            margin: const EdgeInsets.only(right: 20,),
+            child: GridView.builder(gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,childAspectRatio: 2.4),
+                itemCount: morningTime.length,
+                itemBuilder: (context,index){
+              return DrTimeWidget(drTime: morningTime[index],);
+                })
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                  margin: const EdgeInsets.only(left: 20, top: 15),
+                  child: const Text(
+                    'Evening',
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+                  )),
+            ],
+          ),
+          Container(
+              height: 110,
+              margin: const EdgeInsets.only(right: 20,),
+              child: GridView.builder(gridDelegate:
+              const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,childAspectRatio: 2.4),
+                  itemCount: eveningTime.length,
+                  itemBuilder: (context,index){
+                    return DrTimeWidget(drTime: eveningTime[index],);
+                  })
+          ),
+          Container(
+            alignment: Alignment.center,
+            height: 50,
+            margin:const EdgeInsets.only(left: 20,right: 20,top: 10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.teal.shade600,
+            ),
+            child: const Text('Make An Appointment',style: TextStyle(color: Colors.white,fontSize: 20),),
           ),
         ],
       ),

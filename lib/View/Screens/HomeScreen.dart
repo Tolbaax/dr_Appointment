@@ -16,7 +16,7 @@ List<CategoryModel> category = [
       categoryNames: 'Dental',
       drNumber: '20 Doctors'),
   CategoryModel(
-      categoryImageUrl: 'images/heart.png',
+      categoryImageUrl: 'images/Heart.png',
       categoryNames: 'Heart',
       drNumber: '18 Doctors'),
   CategoryModel(
@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue.withAlpha(130),
+      backgroundColor: Colors.blueGrey.shade700,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
