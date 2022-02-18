@@ -21,7 +21,7 @@ class _DrTimeWidgetState extends State<DrTimeWidget> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children:  [
-           Padding(
+          Padding(
             padding:const EdgeInsets.only(right: 5),
             child: Icon(Icons.access_time_rounded,color: widget.drTime!.iconColor,size: 19,),
           ),
