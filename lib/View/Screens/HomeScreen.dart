@@ -1,16 +1,15 @@
 import 'package:de_appointment/Model/CategoryModel.dart';
 import 'package:de_appointment/Model/TopRateModel.dart';
-import 'package:de_appointment/Screens/AppScreen.dart';
-import 'package:de_appointment/Widgets/CategoryWidget.dart';
-import 'package:de_appointment/Widgets/TopRateWidget.dart';
+import 'package:de_appointment/View/Screens/AppScreen.dart';
+import 'package:de_appointment/View/Widgets/TopRateWidget.dart';
 import 'package:flutter/material.dart';
+import '../Widgets/CategoryWidget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
-
 List<CategoryModel> category = [
   CategoryModel(
       categoryImageUrl: 'images/tooth.png',
@@ -31,38 +30,38 @@ List<CategoryModel> category = [
 ];
 List<TopRateModel> topRate = [
   TopRateModel(
-      topRateImageUrl: 'images/dr3.png',
+      topRateImageUrl: 'images/dr2.png',
       drName: 'Dr. Mazen',
-      spec: 'Heart',
+      spec: 'Eye Specialist ',
       rate: 4.5,
       distance: '10km'),
   TopRateModel(
-      topRateImageUrl: 'images/dr3.png',
-      drName: 'Dr. Mazen',
-      spec: 'Heart',
-      rate: 4.5,
-      distance: '10km'),
+      topRateImageUrl: 'images/dr1.png',
+      drName: 'Dr. Eman',
+      spec: 'Dental Specialist',
+      rate: 5,
+      distance: '15km'),
   TopRateModel(
       topRateImageUrl: 'images/dr3.png',
-      drName: 'Dr. Mazen',
-      spec: 'Heart',
-      rate: 4.5,
-      distance: '10km'),
+      drName: 'Dr. Ahmed',
+      spec: 'Brain Specialist',
+      rate: 3.5,
+      distance: '20km'),
   TopRateModel(
-      topRateImageUrl: 'images/dr3.png',
-      drName: 'Dr. Mazen',
-      spec: 'Heart',
-      rate: 4.5,
-      distance: '10km'),
+      topRateImageUrl: 'images/dr4.png',
+      drName: 'Dr. Ebrahim',
+      spec: 'Heart Surgeon',
+      rate: 4.2,
+      distance: '50km'),
 ];
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.indigo,
+      backgroundColor: Colors.blue.withAlpha(130),
       appBar: AppBar(
-        backgroundColor: Colors.indigo,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: const Icon(Icons.menu),
         actions: [
@@ -75,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const EdgeInsets.only(right: 22, left: 10, top: 10, bottom: 10),
             width: 40,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7),
+                borderRadius: BorderRadius.circular(5),
                 image: const DecorationImage(
                     fit: BoxFit.fill, image: AssetImage("images/1.jpg"))),
           )
@@ -86,8 +85,8 @@ class _HomeScreenState extends State<HomeScreen> {
         decoration: BoxDecoration(
             color: Colors.grey.shade200,
             borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(40),
-              topRight: Radius.circular(40),
+              topLeft: Radius.circular(35),
+              topRight: Radius.circular(35),
             )),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -166,6 +165,9 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 135,
               child: ListView.builder(
+                physics: const ScrollPhysics(
+
+                ),
                   shrinkWrap: true,
                   itemCount: category.length,
                   scrollDirection: Axis.horizontal,
@@ -200,9 +202,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: topRate.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onTap: ()
-                      {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const AppScreen()));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const AppScreen()));
                       },
                       child: RateWidget(
                         topRate: topRate[index],

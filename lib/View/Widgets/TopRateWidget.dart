@@ -33,7 +33,7 @@ class _RateWidgetState extends State<RateWidget> {
             child: Image.asset(widget.topRate!.topRateImageUrl!),
           ),
           Container(
-            margin: EdgeInsets.only(left: 5, top: 10),
+            margin:const EdgeInsets.only(left: 5, top: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,11 +54,11 @@ class _RateWidgetState extends State<RateWidget> {
                         widget.topRate!.spec!,
                         style: const TextStyle(
                             color: Colors.grey,
-                            fontSize: 17,
+                            fontSize: 15,
                             fontWeight: FontWeight.w500),
                       ),
                       Container(
-                        margin: const EdgeInsets.only(left: 80),
+                        margin: const EdgeInsets.only(left: 20),
                         child: Row(
                           children: [
                             const Icon(
@@ -66,7 +66,7 @@ class _RateWidgetState extends State<RateWidget> {
                               size: 20,
                               color: Colors.yellow,
                             ),
-                            Text(widget.topRate!.rate!.toString()),
+                            Text(widget.topRate!.rate!.toString(),style:const TextStyle(fontSize: 12),),
                             const Padding(
                               padding:  EdgeInsets.only(left: 5),
                               child:  Icon(
@@ -75,7 +75,7 @@ class _RateWidgetState extends State<RateWidget> {
                                 color: Colors.yellow,
                               ),
                             ),
-                            Text(widget.topRate!.distance!),
+                            Text(widget.topRate!.distance!,style:const TextStyle(fontSize: 12),),
                           ],
                         ),
                       )

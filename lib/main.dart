@@ -1,5 +1,6 @@
-import 'package:de_appointment/Screens/AppScreen.dart';
-import 'package:de_appointment/Screens/HomeScreen.dart';
+
+import 'package:de_appointment/View/Screens/AppScreen.dart';
+import 'package:de_appointment/View/Screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -8,7 +9,6 @@ void main() {
 
 class DrAppointment extends StatefulWidget {
   const DrAppointment({Key? key}) : super(key: key);
-
   @override
   _DrAppointmentState createState() => _DrAppointmentState();
 }
