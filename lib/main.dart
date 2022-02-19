@@ -18,7 +18,7 @@ class _DrAppointmentState extends State<DrAppointment> {
   Widget build(BuildContext context) {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: const HomeScreen(),
       routes: {
         AppScreen.id:(context)=> AppScreen(),
       },
