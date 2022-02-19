@@ -1,4 +1,4 @@
-# de_appointment
+# Dr Appointment
 
 A new Flutter project.
 
