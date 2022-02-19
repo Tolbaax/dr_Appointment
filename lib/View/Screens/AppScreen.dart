@@ -1,5 +1,6 @@
 
 import 'package:de_appointment/Model/DrTimeModel.dart';
+import 'package:de_appointment/Model/TopRateModel.dart';
 import 'package:de_appointment/View/Widgets/DataTimeWidget.dart';
 import 'package:de_appointment/View/Widgets/DrTimeWidget.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +8,9 @@ import 'package:flutter/material.dart';
 import '../../Model/DataTimeModel.dart';
 
 class AppScreen extends StatefulWidget {
-  const AppScreen({Key? key,}) : super(key: key);
+  AppScreen({Key? key,this.rate}) : super(key: key);
   static String id = 'AppScreen';
+  TopRateModel? rate;
   @override
   _AppScreenState createState() => _AppScreenState();
 }
@@ -48,7 +50,7 @@ class _AppScreenState extends State<AppScreen> {
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey.shade700,
+        backgroundColor:const Color.fromARGB(255, 24, 87, 121),
         elevation: 0.0,
         actions: [
           Container(
@@ -61,9 +63,9 @@ class _AppScreenState extends State<AppScreen> {
         children: [
           Container(
             height: 200,
-            decoration: BoxDecoration(
-              color: Colors.blueGrey.shade700,
-              borderRadius: const BorderRadius.only(
+            decoration:const BoxDecoration(
+              color: Color.fromARGB(255, 24, 87, 121),
+              borderRadius:  BorderRadius.only(
                 bottomRight: Radius.circular(35),
                 bottomLeft: Radius.circular(35),
               ),
@@ -77,27 +79,27 @@ class _AppScreenState extends State<AppScreen> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.grey.shade200),
-                  child: Image.asset('images/dr2.png'),
+                  child: Image.asset(widget.rate!.topRateImageUrl!),
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, bottom: 15),
+                     Padding(
+                      padding:const EdgeInsets.only(left: 20, bottom: 15),
                       child: Text(
-                        'Dr. Mazen',
-                        style: TextStyle(
+                        widget.rate!.drName!,
+                        style:const TextStyle(
                             color: Colors.white,
                             fontSize: 25,
                             fontWeight: FontWeight.w700),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20),
+                     Padding(
+                      padding:const EdgeInsets.only(left: 20),
                       child: Text(
-                        'Eye specialist',
-                        style: TextStyle(
+                        widget.rate!.spec!,
+                        style:const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w400,
                             fontSize: 16),
@@ -197,7 +199,7 @@ class _AppScreenState extends State<AppScreen> {
               borderRadius: BorderRadius.circular(10),
               color: Colors.teal.shade600,
             ),
-            child: const Text('Make An Appointment',style: TextStyle(color: Colors.white,fontSize: 20),),
+            child: const Text('Make An Appointment',style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w600),),
           ),
         ],
       ),

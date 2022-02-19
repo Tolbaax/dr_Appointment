@@ -55,11 +55,12 @@ List<TopRateModel> topRate = [
       distance: '50km'),
 ];
 
+
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey.shade700,
+      backgroundColor:const Color.fromARGB(255, 24, 87, 121),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -71,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Container(
             margin:
-                const EdgeInsets.only(right: 22, left: 10, top: 10, bottom: 10),
+                const EdgeInsets.only(right: 25, left: 10, top: 10, bottom: 10),
             width: 40,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
@@ -206,7 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const AppScreen()));
+                                builder: (context) =>  AppScreen(rate: topRate[index],)));
                       },
                       child: RateWidget(
                         topRate: topRate[index],
