@@ -52,78 +52,89 @@ class _AppScreenState extends State<AppScreen> {
       appBar: AppBar(
         backgroundColor:const Color.fromARGB(255, 24, 87, 121),
         elevation: 0.0,
-        actions: [
-          Container(
-            margin: const EdgeInsets.only(right: 15),
-            child: const Icon(Icons.notifications_none),
-          )
-        ],
       ),
       body: Column(
         children: [
-          Container(
-            height: 200,
-            decoration:const BoxDecoration(
-              color: Color.fromARGB(255, 24, 87, 121),
-              borderRadius:  BorderRadius.only(
-                bottomRight: Radius.circular(35),
-                bottomLeft: Radius.circular(35),
-              ),
-            ),
-            child: Row(
-              children: [
-                Container(
-                  height: 150,
-                  width: 130,
-                  margin: const EdgeInsets.only(left: 20, bottom: 20),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.grey.shade200),
-                  child: Image.asset(widget.rate!.topRateImageUrl!),
+          Stack(
+            alignment: Alignment.topRight,
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                height: 200,
+                decoration:const BoxDecoration(
+                  color: Color.fromARGB(255, 24, 87, 121),
+                  borderRadius:  BorderRadius.only(
+                    bottomRight: Radius.circular(35),
+                    bottomLeft: Radius.circular(35),
+                  ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
                   children: [
-                     Padding(
-                      padding:const EdgeInsets.only(left: 20, bottom: 15),
-                      child: Text(
-                        widget.rate!.drName!,
-                        style:const TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                     Padding(
-                      padding:const EdgeInsets.only(left: 20),
-                      child: Text(
-                        widget.rate!.spec!,
-                        style:const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 16),
-                      ),
-                    ),
                     Container(
-                      height: 30,
-                      width: 120,
-                      margin:
-                          const EdgeInsets.only(top: 15, left: 20, bottom: 10),
-                      child: ListView.builder(
-                          itemCount: 5,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return const Icon(
-                              Icons.star,
-                              color: Colors.yellow,
-                            );
-                          }),
+                      height: 150,
+                      width: 130,
+                      margin: const EdgeInsets.only(left: 20, bottom: 20),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.grey.shade200),
+                      child: Image.asset(widget.rate!.topRateImageUrl! ),
                     ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding:const EdgeInsets.only(left: 20, bottom: 15),
+                          child: Text(
+                            widget.rate!.drName!,
+                            style:const TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                        Padding(
+                          padding:const EdgeInsets.only(left: 20),
+                          child: Text(
+                            widget.rate!.spec!,
+                            style:const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 16),
+                          ),
+                        ),
+                        Container(
+                          height: 30,
+                          width: 120,
+                          margin:
+                          const EdgeInsets.only(top: 15, left: 20, bottom: 10),
+                          child: ListView.builder(
+                              itemCount: 5,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return const Icon(
+                                  Icons.star,
+                                  color: Colors.yellow,
+                                );
+                              }),
+                        ),
+                      ],
+                    )
                   ],
-                )
-              ],
-            ),
+                ),
+              ),
+              Positioned(
+                bottom: -22.5,right: 35,
+                child: Container(
+                    height: 45,width: 45,
+                    decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                  ),
+                  child:const Icon(Icons.location_on,color: Colors.amber,size: 30,),
+                ),
+              )
+            ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
