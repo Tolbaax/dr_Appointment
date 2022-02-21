@@ -16,35 +16,6 @@ class AppScreen extends StatefulWidget {
 }
 
 class _AppScreenState extends State<AppScreen> {
-  List<DataTimeModel> dataTime = [
-    DataTimeModel(day: 'Tue', month: 13, color: Colors.teal.shade600, textColor: Colors.white),
-    DataTimeModel(day: 'Wed', month: 14, color: Colors.white),
-    DataTimeModel(day: 'Thu', month: 15, color: Colors.white),
-    DataTimeModel(day: 'Fri', month: 16, color: Colors.white),
-    DataTimeModel(day: 'Sat', month: 17, color: Colors.white),
-    DataTimeModel(day: 'Sun', month: 18, color: Colors.white),
-    DataTimeModel(day: 'Mon', month: 19, color: Colors.white),
-  ];
-
-  List<DrTimeModel> morningTime = [
-    DrTimeModel(time: '08:30 Am',color: Colors.white),
-    DrTimeModel(time: '09:30 Am',color: Colors.teal.shade600,textColor: Colors.white,iconColor: Colors.white),
-    DrTimeModel(time: '10:00 Am',color: Colors.white),
-    DrTimeModel(time: '10:30 Am',color: Colors.white),
-    DrTimeModel(time: '11:00 Am',color: Colors.white),
-    DrTimeModel(time: '11:30 Am',color: Colors.white),
-
-  ];
-
-  List<DrTimeModel> eveningTime = [
-    DrTimeModel(time: '05:30 Pm',color: Colors.teal.shade600,textColor: Colors.white,iconColor: Colors.white),
-    DrTimeModel(time: '06:00 Pm',color: Colors.white),
-    DrTimeModel(time: '07:00 Pm',color: Colors.white),
-    DrTimeModel(time: '08:30 Pm',color: Colors.white),
-    DrTimeModel(time: '9:00 Pm',color: Colors.white),
-    DrTimeModel(time: '10:30 Pm',color: Colors.white),
-
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
