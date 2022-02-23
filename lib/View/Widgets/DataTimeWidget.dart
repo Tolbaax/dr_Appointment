@@ -2,30 +2,25 @@
 import 'package:de_appointment/Model/DataTimeModel.dart';
 import 'package:flutter/material.dart';
 
-class DataTimeWidget extends StatefulWidget {
-  const DataTimeWidget({Key? key,this.dataTime}) : super(key: key);
+class DataTimeWidget extends StatelessWidget {
+  const DataTimeWidget({Key? key, this.dataTime, required this.active}) : super(key: key);
   final DataTimeModel? dataTime;
-
-  @override
-  _DataTimeWidgetState createState() => _DataTimeWidgetState();
-}
-
-class _DataTimeWidgetState extends State<DataTimeWidget> {
+  final bool active;
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,width: 65,
+      height: 70,width: 60,
       margin:const EdgeInsets.only(left: 20,top: 20),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: widget.dataTime!.color
+        color: active? Colors.teal.shade600:Colors.white,
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children:[
-          Text(widget.dataTime!.day!,style:  TextStyle(fontSize: 18,fontWeight: FontWeight.w700,color: widget.dataTime!.textColor),),
+          Text(dataTime!.daysNum!.toString(),style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700,color: active?Colors.white:Colors.black),),
           const SizedBox(height: 15,),
-          Text(widget.dataTime!.month!.toString(),style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700,color: widget.dataTime!.textColor))
+          Text(dataTime!.dayStr!,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700,color: active?Colors.white:Colors.black))
         ],
       ),
     );

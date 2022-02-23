@@ -1,5 +1,4 @@
 
-import 'package:de_appointment/View/Screens/AppScreen.dart';
 import 'package:de_appointment/View/Screens/HomeScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -16,12 +15,9 @@ class DrAppointment extends StatefulWidget {
 class _DrAppointmentState extends State<DrAppointment> {
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
-      routes: {
-        AppScreen.id:(context)=> AppScreen(),
-      },
+      home: HomeScreen(),
     );
   }
 }

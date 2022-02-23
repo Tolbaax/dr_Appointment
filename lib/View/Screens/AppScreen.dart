@@ -4,18 +4,47 @@ import 'package:de_appointment/Model/TopRateModel.dart';
 import 'package:de_appointment/View/Widgets/DataTimeWidget.dart';
 import 'package:de_appointment/View/Widgets/DrTimeWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../Model/DataTimeModel.dart';
 
 class AppScreen extends StatefulWidget {
   AppScreen({Key? key,this.rate}) : super(key: key);
-  static String id = 'AppScreen';
   TopRateModel? rate;
   @override
   _AppScreenState createState() => _AppScreenState();
 }
 
 class _AppScreenState extends State<AppScreen> {
+
+  var month = DateFormat.MMM().format(DateTime.now());
+
+  var year = DateTime.now().year;
+
+  int today = DateTime.now().day;
+
+  int lastDayOfMonth = DateTime(DateTime.now().year,DateTime.now().month + 1,0).day;
+
+  List<DataTimeModel> dataTime = [];
+
+  void initializeDate()
+  {
+    for(int day =today; day<=lastDayOfMonth;day++) {
+      dataTime.add(DataTimeModel(
+        daysNum: day,
+        dayStr: DateFormat.E().format(DateTime(DateTime.now().year,DateTime.now().month,day)),
+      ));
+    }
+  }
+
+  int secCurrentDay = 0;
+
+  @override
+
+  void initState(){
+    initializeDate();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,20 +141,27 @@ class _AppScreenState extends State<AppScreen> {
             children: [
               Container(
                   margin: const EdgeInsets.only(left: 20, top: 20),
-                  child: const Text(
-                    'February 2022',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+                  child: Text(
+                    '$month $year',
+                    style:const TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
                   )),
             ],
           ),
           SizedBox(
-            height: 105,
+            height: 105,width: MediaQuery.of(context).size.width,
             child: ListView.builder(
-                itemCount: dataTime.length,
                 scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
+                itemCount: dataTime.length,
                 itemBuilder: (context, index) {
-                  return DataTimeWidget(
-                    dataTime: dataTime[index],
+                  return GestureDetector(
+                    onTap: ()
+                    {
+                      setState(() {
+                        secCurrentDay = index;
+                      });
+                    },
+                    child: DataTimeWidget(dataTime: dataTime[index],active: secCurrentDay == index,),
                   );
                 }),
           ),
