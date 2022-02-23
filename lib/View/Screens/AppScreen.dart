@@ -9,8 +9,9 @@ import 'package:intl/intl.dart';
 import '../../Model/DataTimeModel.dart';
 
 class AppScreen extends StatefulWidget {
-  AppScreen({Key? key,this.rate}) : super(key: key);
-  TopRateModel? rate;
+  const AppScreen({Key? key,this.rate}) : super(key: key);
+  final TopRateModel? rate;
+
   @override
   _AppScreenState createState() => _AppScreenState();
 }
@@ -25,10 +26,11 @@ class _AppScreenState extends State<AppScreen> {
 
   int lastDayOfMonth = DateTime(DateTime.now().year,DateTime.now().month + 1,0).day;
 
+  var currentIndex = 0;
+
   List<DataTimeModel> dataTime = [];
 
-  void initializeDate()
-  {
+  void initializeDate() {
     for(int day =today; day<=lastDayOfMonth;day++) {
       dataTime.add(DataTimeModel(
         daysNum: day,
@@ -94,7 +96,7 @@ class _AppScreenState extends State<AppScreen> {
                           ),
                         ),
                         Padding(
-                          padding:const EdgeInsets.only(left: 20),
+                          padding:const EdgeInsets.only(left: 20,),
                           child: Text(
                             widget.rate!.spec!,
                             style:const TextStyle(
@@ -176,16 +178,17 @@ class _AppScreenState extends State<AppScreen> {
                   )),
             ],
           ),
-          Container(
-            height: 110,
-            margin: const EdgeInsets.only(right: 20,),
+          Padding(
+            padding: const EdgeInsets.only(right: 20,top: 5),
             child: GridView.builder(gridDelegate:
             const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,childAspectRatio: 2.4),
+                crossAxisCount: 3,childAspectRatio: 2.4,crossAxisSpacing: 3),
                 itemCount: morningTime.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context,index){
               return DrTimeWidget(drTime: morningTime[index],);
-                })
+                }),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -198,21 +201,22 @@ class _AppScreenState extends State<AppScreen> {
                   )),
             ],
           ),
-          Container(
-              height: 110,
-              margin: const EdgeInsets.only(right: 20,),
-              child: GridView.builder(gridDelegate:
-              const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,childAspectRatio: 2.4),
-                  itemCount: eveningTime.length,
-                  itemBuilder: (context,index){
-                    return DrTimeWidget(drTime: eveningTime[index],);
-                  })
+          Padding(
+            padding: const EdgeInsets.only(right: 20,top: 5),
+            child: GridView.builder(gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,childAspectRatio: 2.4,crossAxisSpacing: 3,),
+                itemCount: eveningTime.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context,index){
+                  return DrTimeWidget(drTime: eveningTime[index],);
+                }),
           ),
           Container(
             alignment: Alignment.center,
             height: 50,
-            margin:const EdgeInsets.only(left: 20,right: 20,top: 10),
+            margin:const EdgeInsets.only(left: 20,right: 20,top: 15),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.teal.shade600,
