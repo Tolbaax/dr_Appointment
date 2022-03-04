@@ -11,7 +11,6 @@ import '../../Model/DataTimeModel.dart';
 class AppScreen extends StatefulWidget {
   const AppScreen({Key? key,this.rate}) : super(key: key);
   final TopRateModel? rate;
-
   @override
   _AppScreenState createState() => _AppScreenState();
 }
@@ -26,8 +25,6 @@ class _AppScreenState extends State<AppScreen> {
 
   int lastDayOfMonth = DateTime(DateTime.now().year,DateTime.now().month + 1,0).day;
 
-  var currentIndex = 0;
-
   List<DataTimeModel> dataTime = [];
 
   void initializeDate() {
@@ -40,7 +37,8 @@ class _AppScreenState extends State<AppScreen> {
   }
 
   int secCurrentDay = 0;
-
+  int secMorningTime = 0;
+  int secEveningTime = 0;
   @override
 
   void initState(){
@@ -55,175 +53,189 @@ class _AppScreenState extends State<AppScreen> {
         backgroundColor:const Color.fromARGB(255, 24, 87, 121),
         elevation: 0.0,
       ),
-      body: Column(
-        children: [
-          Stack(
-            alignment: Alignment.topRight,
-            clipBehavior: Clip.none,
-            children: [
-              Container(
-                height: 200,
-                decoration:const BoxDecoration(
-                  color: Color.fromARGB(255, 24, 87, 121),
-                  borderRadius:  BorderRadius.only(
-                    bottomRight: Radius.circular(35),
-                    bottomLeft: Radius.circular(35),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      height: 150,
-                      width: 130,
-                      margin: const EdgeInsets.only(left: 20, bottom: 20),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey.shade200),
-                      child: Image.asset(widget.rate!.topRateImageUrl! ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(
+              alignment: Alignment.topRight,
+              clipBehavior: Clip.none,
+              children: [
+                Container(
+                  height: 200,
+                  decoration:const BoxDecoration(
+                    color: Color.fromARGB(255, 24, 87, 121),
+                    borderRadius:  BorderRadius.only(
+                      bottomRight: Radius.circular(35),
+                      bottomLeft: Radius.circular(35),
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding:const EdgeInsets.only(left: 20, bottom: 15),
-                          child: Text(
-                            widget.rate!.drName!,
-                            style:const TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ),
-                        Padding(
-                          padding:const EdgeInsets.only(left: 20,),
-                          child: Text(
-                            widget.rate!.spec!,
-                            style:const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 16),
-                          ),
-                        ),
-                        Container(
-                          height: 30,
-                          width: 120,
-                          margin:
-                          const EdgeInsets.only(top: 15, left: 20, bottom: 10),
-                          child: ListView.builder(
-                              itemCount: 5,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) {
-                                return const Icon(
-                                  Icons.star,
-                                  color: Colors.yellow,
-                                );
-                              }),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Positioned(
-                bottom: -22.5,right: 35,
-                child: Container(
-                    height: 45,width: 45,
-                    decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
                   ),
-                  child:const Icon(Icons.location_on,color: Colors.amber,size: 30,),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 150,
+                        width: 130,
+                        margin: const EdgeInsets.only(left: 20, bottom: 20),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey.shade200),
+                        child: Image.asset(widget.rate!.topRateImageUrl! ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding:const EdgeInsets.only(left: 20, bottom: 15),
+                            child: Text(
+                              widget.rate!.drName!,
+                              style:const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                          Padding(
+                            padding:const EdgeInsets.only(left: 20,),
+                            child: Text(
+                              widget.rate!.spec!,
+                              style:const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 16),
+                            ),
+                          ),
+                          Container(
+                            height: 30,
+                            width: 120,
+                            margin:
+                            const EdgeInsets.only(top: 15, left: 20, bottom: 10),
+                            child: ListView.builder(
+                                itemCount: 5,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  return const Icon(
+                                    Icons.star,
+                                    color: Colors.yellow,
+                                  );
+                                }),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-              )
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                  margin: const EdgeInsets.only(left: 20, top: 20),
-                  child: Text(
-                    '$month $year',
-                    style:const TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
-                  )),
-            ],
-          ),
-          SizedBox(
-            height: 105,width: MediaQuery.of(context).size.width,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(),
-                itemCount: dataTime.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: ()
-                    {
+                Positioned(
+                  bottom: -22.5,right: 35,
+                  child: Container(
+                      height: 45,width: 45,
+                      decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                    ),
+                    child:const Icon(Icons.location_on,color: Colors.amber,size: 30,),
+                  ),
+                )
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                    margin: const EdgeInsets.only(left: 20, top: 20),
+                    child: Text(
+                      '$month $year',
+                      style:const TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+                    )),
+              ],
+            ),
+            SizedBox(
+              height: 105,width: MediaQuery.of(context).size.width,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: dataTime.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: ()
+                      {
+                        setState(() {
+                          secCurrentDay = index;
+                        });
+                      },
+                      child: DataTimeWidget(dataTime: dataTime[index],active: secCurrentDay == index,),
+                    );
+                  }),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                    margin: const EdgeInsets.only(left: 20, top: 15),
+                    child: const Text(
+                      'Morning',
+                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+                    )),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 20,top: 5),
+              child: GridView.builder(gridDelegate:
+              const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,childAspectRatio: 2.4,crossAxisSpacing: 3),
+                  itemCount: morningTime.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context,index){
+                return GestureDetector(
+                    onTap: (){
                       setState(() {
-                        secCurrentDay = index;
+                        secMorningTime = index;
                       });
                     },
-                    child: DataTimeWidget(dataTime: dataTime[index],active: secCurrentDay == index,),
-                  );
-                }),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                  margin: const EdgeInsets.only(left: 20, top: 15),
-                  child: const Text(
-                    'Morning',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
-                  )),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 20,top: 5),
-            child: GridView.builder(gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,childAspectRatio: 2.4,crossAxisSpacing: 3),
-                itemCount: morningTime.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context,index){
-              return DrTimeWidget(drTime: morningTime[index],);
-                }),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                  margin: const EdgeInsets.only(left: 20, top: 15),
-                  child: const Text(
-                    'Evening',
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
-                  )),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 20,top: 5),
-            child: GridView.builder(gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,childAspectRatio: 2.4,crossAxisSpacing: 3,),
-                itemCount: eveningTime.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context,index){
-                  return DrTimeWidget(drTime: eveningTime[index],);
-                }),
-          ),
-          Container(
-            alignment: Alignment.center,
-            height: 50,
-            margin:const EdgeInsets.only(left: 20,right: 20,top: 15),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.teal.shade600,
+                    child: DrTimeWidget(drTime: morningTime[index],secTime: secMorningTime == index,));
+                  }),
             ),
-            child: const Text('Make An Appointment',style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w600),),
-          ),
-        ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                    margin: const EdgeInsets.only(left: 20, top: 15),
+                    child: const Text(
+                      'Evening',
+                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+                    )),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 20,top: 5),
+              child: GridView.builder(gridDelegate:
+              const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,childAspectRatio: 2.4,crossAxisSpacing: 3,),
+                  itemCount: eveningTime.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context,index){
+                    return GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            secEveningTime = index;
+                          });
+                        },
+                        child: DrTimeWidget(drTime: eveningTime[index], secTime: secEveningTime == index,));
+                  }),
+            ),
+            Container(
+              alignment: Alignment.center,
+              height: 50,
+              margin:const EdgeInsets.only(left: 20,right: 20,top: 15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.teal.shade600,
+              ),
+              child: const Text('Make An Appointment',style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w600),),
+            ),
+          ],
+        ),
       ),
     );
   }

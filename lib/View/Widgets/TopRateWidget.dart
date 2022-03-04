@@ -1,10 +1,9 @@
-
 import 'package:de_appointment/Model/TopRateModel.dart';
 import 'package:flutter/material.dart';
 
 class RateWidget extends StatefulWidget {
+  const RateWidget({Key? key, this.topRate}) : super(key: key);
   final TopRateModel? topRate;
-  const RateWidget({this.topRate});
   @override
   _RateWidgetState createState() => _RateWidgetState();
 }
@@ -65,7 +64,7 @@ class _RateWidgetState extends State<RateWidget> {
                             const Icon(
                               Icons.star_purple500_outlined,
                               size: 20,
-                              color: Colors.yellow,
+                              color: Colors.amber,
                             ),
                             Text(widget.topRate!.rate!.toString(),style:const TextStyle(fontSize: 12),),
                             const Padding(
@@ -73,7 +72,7 @@ class _RateWidgetState extends State<RateWidget> {
                               child:  Icon(
                                 Icons.location_on,
                                 size: 20,
-                                color: Colors.yellow,
+                                color: Colors.amber,
                               ),
                             ),
                             Text(widget.topRate!.distance!,style:const TextStyle(fontSize: 12),),
