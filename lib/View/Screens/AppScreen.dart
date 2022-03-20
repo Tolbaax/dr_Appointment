@@ -227,7 +227,7 @@ class _AppScreenState extends State<AppScreen> {
             Container(
               alignment: Alignment.center,
               height: 50,
-              margin:const EdgeInsets.only(left: 20,right: 20,top: 15),
+              margin:const EdgeInsetsDirectional.only(end: 20,start: 20,top: 10,bottom: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.teal.shade600,

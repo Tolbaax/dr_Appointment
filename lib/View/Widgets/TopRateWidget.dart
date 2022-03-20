@@ -33,13 +33,12 @@ class _RateWidgetState extends State<RateWidget> {
             child: Image.asset(widget.topRate!.topRateImageUrl!),
           ),
           Container(
-            margin:const EdgeInsets.only(left: 5, top: 10),
+            margin:const EdgeInsetsDirectional.only(start: 5, top: 10),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 15),
+                  padding: const EdgeInsetsDirectional.only(top: 10, start: 15),
                   child: Text(
                     widget.topRate!.drName!,
                     style: const TextStyle(
@@ -47,19 +46,20 @@ class _RateWidgetState extends State<RateWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 15, left: 15),
-                  child: Row(
-                    children: [
-                      Text(
-                        widget.topRate!.spec!,
-                        style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(left: 20),
-                        child: Row(
+                  padding: const EdgeInsetsDirectional.only(top: 20,start: 15),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width*0.59,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          widget.topRate!.spec!,
+                          style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500),
+                        ),
+                        Row(
                           children: [
                             const Icon(
                               Icons.star_purple500_outlined,
@@ -77,9 +77,9 @@ class _RateWidgetState extends State<RateWidget> {
                             ),
                             Text(widget.topRate!.distance!,style:const TextStyle(fontSize: 12),),
                           ],
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
